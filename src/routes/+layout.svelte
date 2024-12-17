@@ -1,13 +1,19 @@
-<script lang="ts">
-	import type { Snippet } from '@svelte';
-	import { ClerkProvider } from 'svelte-clerk';
-	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
+<script>
+  import { invalidate } from '$app/navigation'
+  import { onMount } from 'svelte'
 
-	const { children }: { children: Snippet } = $props();
+  let { data, children } = $props()
+  let { session, supabase } = $derived(data)
+
+  onMount(() => {
+    const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
+      if (newSession?.expires_at !== session?.expires_at) {
+        invalidate('supabase:auth')
+      }
+    })
+
+    return () => data.subscription.unsubscribe()
+  })
 </script>
 
-<!-- ... -->
-
-<ClerkProvider publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
-	{@render children()}
-</ClerkProvider>
+{@render children()}

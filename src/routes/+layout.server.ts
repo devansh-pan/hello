@@ -1,9 +1,9 @@
-// src/+layout.server.ts
-import { buildClerkProps } from 'svelte-clerk/server';
+import type { LayoutServerLoad } from './$types';
 
-// To enable Clerk SSR support, add initial state props to the load function
-export const load = ({ locals }) => {
-	return {
-		...buildClerkProps(locals.auth)
-	};
-};
+export const load: LayoutServerLoad = async ({ locals: { safeGetSession }, cookies }) => {
+  const { session } = await safeGetSession()
+  return {
+    session,
+    cookies: cookies.getAll(),
+  }
+}
