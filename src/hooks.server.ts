@@ -20,7 +20,7 @@ const supabase: Handle = async ({ event, resolve }) => {
        */
       setAll: (cookiesToSet) => {
         cookiesToSet.forEach(({ name, value, options }) => {
-          event.cookies.set(name, value, { ...options, path: '/' })
+          event.cookies.set(name, value, { ...options, path: '/'})
         })
       },
     },
@@ -78,4 +78,4 @@ const authGuard: Handle = async ({ event, resolve }) => {
   return resolve(event)
 }
 
-export const handle: Handle = sequence(supabase, authGuard)
+export const handle: Handle = sequence(supabase, authGuard);

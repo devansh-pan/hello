@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { invalidate } from '$app/navigation'
+  import { invalidate , goto } from '$app/navigation'
   import type { EventHandler } from 'svelte/elements'
 
   import type { PageData } from './$types'
 
   let { data } = $props()
-  let { notes, supabase, user } = $derived(data)
-
+  let { notes, supabase, user } = $derived(data);
   const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = async (evt) => {
     evt.preventDefault()
     if (!evt.target) return
@@ -23,8 +22,8 @@
     form.reset()
   }
 </script>
-
-<h1>Private page for user: {user?.email}</h1>
+ {#if user && user.email}
+<h1>Dashboard  Your email: {user?.email}</h1>
 <h2>Notes</h2>
 <ul>
   {#each notes as note}
@@ -37,3 +36,9 @@
     <input name="note" type="text" />
   </label>
 </form>
+{:else if user === null}
+  <p>You are not logged in.</p>
+   <a href="/auth">Login</a>
+{:else}
+  <p>Loading...</p>
+{/if}
