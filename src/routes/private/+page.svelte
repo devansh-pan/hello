@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { invalidate , goto } from '$app/navigation'
+  import { invalidate  } from '$app/navigation'
   import type { EventHandler } from 'svelte/elements'
 
   import type { PageData } from './$types'

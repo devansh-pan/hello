@@ -1,13 +1,13 @@
 <script>
   let { data } = $props()
-  let { countries } = $derived(data)
+  let { notes } = $derived(data)
 </script>
-
-<h1>Welcome to Supabase!</h1>
 <ul>
-  {#each countries as country}
-    <li>{country.name}</li>
+  {#if notes}
+  {#each notes as note}
+    <li>{note.note}</li>
   {/each}
+  {/if}
 </ul>
 
 <div>
