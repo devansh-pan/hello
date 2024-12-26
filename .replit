@@ -1,0 +1,20 @@
+run = "vite dev --open"
+entrypoint = "README.md"
+modules = ["svelte-kit-node-20", "nodejs-20", "bash"]
+
+[nix]
+channel = "stable-24_05"
+
+[[ports]]
+localPort = 5173
+externalPort = 80
+exposeLocalhost = true
+
+[rules]
+
+[rules.formatter]
+
+[rules.formatter.fileExtensions]
+
+[rules.formatter.fileExtensions.".js"]
+id = "module:svelte-kit-node-20/languageServer:svelte-language-server"

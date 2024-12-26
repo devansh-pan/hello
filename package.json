@@ -1,0 +1,45 @@
+{
+	"name": "hello",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "prettier --check . && eslint ."
+	},
+	"devDependencies": {
+		"@eslint/compat": "^1.2.4",
+		"@sveltejs/kit": "^2.15.0",
+		"@sveltejs/vite-plugin-svelte": "^4.0.4",
+		"@types/node": "^22.10.2",
+		"autoprefixer": "^10.4.20",
+		"eslint": "^9.17.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.46.1",
+		"globals": "^15.14.0",
+		"prettier": "^3.4.2",
+		"prettier-plugin-svelte": "^3.3.2",
+		"prettier-plugin-tailwindcss": "^0.6.9",
+		"svelte": "^5.16.0",
+		"svelte-check": "^4.1.1",
+		"tailwindcss": "^3.4.17",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.18.2",
+		"vite": "^5.4.11"
+	},
+	"dependencies": {
+		"@eslint/js": "^9.17.0",
+		"@supabase/ssr": "^0.5.1",
+		"@supabase/supabase-js": "^2.47.10",
+		"@sveltejs/adapter-node": "^5.2.11",
+		"@tailwindcss/container-queries": "^0.1.1",
+		"@tailwindcss/forms": "^0.5.9",
+		"@tailwindcss/typography": "^0.5.15",
+		"pnpm": "9.15.1"
+	}
+}
