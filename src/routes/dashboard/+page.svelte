@@ -6,7 +6,7 @@
 
   let { data } = $props()
   let { notes, supabase, user } = $derived(data)
-
+console.log(data.user.email)
   const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = async (evt) => {
     evt.preventDefault()
     if (!evt.target) return

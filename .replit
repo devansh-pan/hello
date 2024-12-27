@@ -16,5 +16,5 @@ exposeLocalhost = true
 
 [rules.formatter.fileExtensions]
 
-[rules.formatter.fileExtensions.".js"]
-id = "module:svelte-kit-node-20/languageServer:svelte-language-server"
+[rules.formatter.fileExtensions.".ts"]
+id = "module:nodejs-20/formatter:prettier"
