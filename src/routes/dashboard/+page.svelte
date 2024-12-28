@@ -5,8 +5,8 @@
   import type { PageData } from './$types'
 
   let { data } = $props()
-  let { notes, supabase, user } = $derived(data)
-console.log(data.user.email)
+  let { profile, supabase, user } = $derived(data)
+console.log(data)
   const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = async (evt) => {
     evt.preventDefault()
     if (!evt.target) return
@@ -23,17 +23,19 @@ console.log(data.user.email)
     form.reset()
   }
 </script>
-
-<h1>Private page for user: {user?.email}</h1>
-<h2>Notes</h2>
-<ul>
-  {#each notes as note}
-    <li>{note.note}</li>
-  {/each}
+{#if user}
+<h1>Welcome {user?.username}</h1>
+<ul class="list text-blue-500 text-md">
+  {#if profile}
+    <li>User name: {profile.username}</li>
+    <li>Email: {user.email}</li>
+  {/if}
 </ul>
+  <a href="/user/{profile.username}">View public profile</a>
 <form onsubmit={handleSubmit}>
   <label>
     Add a note
     <input name="note" type="text" />
   </label>
 </form>
+{/if}
