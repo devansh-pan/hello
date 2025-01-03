@@ -34,7 +34,7 @@ console.log(url.publicUrl)
 {#if user}
 <h1>Welcome {profile.full_name}</h1>
   {#if profile}
-  <div class="bg-white overflow-hidden shadow rounded-lg border m-3">
+  <div class="bg-white overflow-hidden shadow rounded-lg border m-3 dark:bg-gray-300 dark:text-white">
     <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
             Profile
@@ -84,15 +84,15 @@ console.log(url.publicUrl)
 </div>
   {/if}
   
-  <a class="text-teal-600 font-bold border block" href="/user/{profile.username}">View public profile</a>
+  <a class="text-gray-600 p-2 font-bold border block" href="/user/{profile.username}">View public profile</a>
     {#if profile.full_name}
-    <div class="bg-white rounded shadow ">
+    <div class="bg-white p-2 rounded dark:text-gray-800 dark:bg-gray-300 shadow ">
 <form method="POST" onsubmit={handleSubmit}>
   <label for="fullname">
     Update name
-    <input required class="block"id="fullname" name="fullname" type="text" value={profile.full_name} />
+    <input required class="block"id="fullname" name="fullname" type="text" bind:value={profile.full_name} />
   </label>
-    <button class="bg-gray-500 rounded p-3 m-2 text-white" type="submit">Submit</button>
+    <button class="bg-gray-500 rounded p-2 m-2 text-white" type="submit">Submit</button>
 </form>
     </div>
     {/if}

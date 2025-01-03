@@ -1,6 +1,5 @@
-run = "vite dev --open"
-entrypoint = "README.md"
-modules = ["svelte-kit-node-20", "nodejs-20", "bash"]
+run = "pnpm dev --open"
+modules = ["nodejs-20", "web"]
 
 [nix]
 channel = "stable-24_05"
@@ -18,3 +17,6 @@ exposeLocalhost = true
 
 [rules.formatter.fileExtensions.".ts"]
 id = "module:nodejs-20/formatter:prettier"
+
+[deployment]
+run = ["sh", "-c", "pnpm dev --open"]

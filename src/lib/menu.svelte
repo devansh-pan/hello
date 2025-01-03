@@ -1,6 +1,5 @@
 <script>
     let {session} = $props();
-    let {id} = $derived(session);
 </script>
 <div class="p-4">
     <div class="group relative">

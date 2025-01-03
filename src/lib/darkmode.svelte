@@ -22,7 +22,7 @@
   }
 </script>
 
-<button class="p-2 ml-4 border border-gray-400 dark:border-gray-100/30" onclick={toggleDarkMode}>
+<button class="p-2 h-[30px] m-4 border border-gray-400 dark:border-gray-100/30" onclick={toggleDarkMode} >
   {isDarkMode ? 'Light' : 'Dark'}
 </button>
 
