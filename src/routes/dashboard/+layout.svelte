@@ -12,13 +12,8 @@
 
   }
 </script>
-
-<header>
-  <nav>
-    <a href="/">Home</a>
-  </nav>
-  <button onclick={logout}>Logout</button>
-</header>
+  
 <main>
   {@render children()}
+  <button class="outline bg-gray-600 outline-red-600 rounded p-2 m-2 text-white" onclick={logout}>Logout</button>
 </main>

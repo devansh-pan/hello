@@ -1,62 +1,100 @@
 <script lang="ts">
-  import { invalidate } from '$app/navigation'
+  import { invalidate , goto, invalidateAll} from '$app/navigation'
   import type { EventHandler } from 'svelte/elements'
 
   import type { PageData } from './$types'
  let message = $state("");
-  let { data } = $props()
+  let { data, form } = $props()
   let { profile, supabase, user } = $derived(data)
-console.log(data)
+    console.log(form)
+    const { data:url } = supabase.storage.from('avatars').getPublicUrl(profile.username)
+const avatar = url.publicUrl
   const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = async (evt) => {
     evt.preventDefault()
     if (!evt.target) return
 
     const form = evt.target as HTMLFormElement
 
-    const file = (new FormData(form).get('avatar') ?? '') as string
+    const file = (new FormData(form).get('avatar')) as string
     const fullname = (new FormData(form).get('fullname') ?? profile.full_name) as string
-    if (fullname && file) {
-      const {data:path ,error:fileError} = await supabase.storage.from('avatars').upload(profile.username,file,{upsert: true})
-      if (fileError) {
-        return message = fileError.message
-      }
- const { data , error} = await supabase.from('profiles').upsert({id:profile.id,full_name: fullname,avatar_url:path.fullPath}).eq('id', profile.id);
+    if (fullname) {
+ const { data, error} = await supabase.from('profiles').upsert({id:profile.id,full_name: fullname}).eq('id', profile.id).select('*').single();
       if (error) {
         console.log(error)
-      }
-      return message = "Profile updated"
-      form.reset()
+          return message = error.message
+      } 
+        await invalidate('supabase:db:profiles');
+        console.log(data)
+      return { profile:data , message: "Updated"}
     } 
-    if (note) {
-const { error } = await supabase.from('notes').insert({ note })
-    if (error) console.error(error)
-
-    invalidate('supabase:db:profiles')
-    form.reset() }
+    
   }
-  const {data:url} = supabase.storage.from('avatars').getPublicUrl(profile.username)
-const avatar = url.publicUrl
 console.log(url.publicUrl)
-  
 </script>
 {#if user}
-<h1>Welcome {user?.id}</h1>
-<ul class="list text-blue-500 text-md">
+<h1>Welcome {profile.full_name}</h1>
   {#if profile}
-    <li>User name: {profile.username}</li>
-    <li>Full name: {profile.full_name}</li>
-    <li>Email: {user.email}</li>
+  <div class="bg-white overflow-hidden shadow rounded-lg border m-3">
+    <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Profile
+        </h3>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+            This is some information about the you.
+        </p>
+    </div>
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+        <dl class="sm:divide-y m:divide-gray-200">
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <img src={avatar} alt="avatar" class="aspect-square w-[60px] rounded-full circle" />
+                <dt class="text-sm font-medium text-gray-500">
+                    Full name
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {profile.full_name}
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Email address
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {user.email}
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Phone number
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    (123) 456-7890
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Address
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    123 Main St<br>
+                     Shambala,India
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>
   {/if}
-</ul>
-  <img src={avatar} alt="avatar" class="aspect-square w-[60px] rounded circle" />
-  <a href="/user/{profile.username}">View public profile</a>
-<form onsubmit={handleSubmit}>
+  
+  <a class="text-teal-600 font-bold border block" href="/user/{profile.username}">View public profile</a>
+    {#if profile.full_name}
+    <div class="bg-white rounded shadow ">
+<form method="POST" onsubmit={handleSubmit}>
   <label for="fullname">
     Update name
-    <input id="fullname" name="fullname" type="text" value={profile.full_name} />
+    <input required class="block"id="fullname" name="fullname" type="text" value={profile.full_name} />
   </label>
-  <label for="avatar" >Avatar</label>
-  <input id="avatar" name="avatar" type="file" accept="image/*" >
+    <button class="bg-gray-500 rounded p-3 m-2 text-white" type="submit">Submit</button>
 </form>
+    </div>
+    {/if}
   <p>{message}</p>
 {/if}
