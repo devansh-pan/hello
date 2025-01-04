@@ -1,4 +1,3 @@
-
 <script lang="ts">
 import { compile } from 'mdsvex';
    let {data} = $props()
