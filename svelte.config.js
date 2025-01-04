@@ -6,9 +6,8 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const config = {
 	// Consult https://svelte.dev/docs/kit/integrations
 	// for more information about preprocessors
-	preprocess: [vitePreprocess({ script:true
-															})
-							 ],
+	preprocess: [vitePreprocess({ script:true})
+							 ,mdsvex({extensions:['svx','md']})],
 
 	kit: {
 		csrf: {

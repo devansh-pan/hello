@@ -15,5 +15,5 @@
   
 <main>
   {@render children()}
-  <button class="outline bg-gray-600 outline-red-600 rounded p-2 m-2 text-white" onclick={logout}>Logout</button>
+  <button class="outline bg-white outline-red-600 rounded p-2 m-2 text-gray-700" onclick={logout}>Logout</button>
 </main>

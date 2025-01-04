@@ -1,7 +1,6 @@
 <script lang="ts">
   let data = $props();
   const {data:{user}} = $derived(data)
- console.log(user?.user_metadata)
 </script>
 
 <h2 class="h1 text-xl m-1 mt-3">Welcome {user?.user?.user_metadata?.full_name}</h2>
