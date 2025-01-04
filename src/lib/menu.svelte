@@ -7,8 +7,11 @@
         <nav tabindex="0" class="border border-2 bg-white invisible border-gray-400 rounded w-60 absolute left-0 top-full transition-all rounded dark:bg-gray-600 opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1">
             <ul class="py-1">
                 <li>
-                    <a href="/dashboard" class="block px-4 py-2 dark:hover:bg-gray-700 hover:bg-gray-100"> Dashboard
+                    <a href="/dashboard" class="block px-4 py-2 dark:hover:bg-gray-700 hover:bg-blue-100"> Dashboard
                     </a>
+                </li>
+                <li>
+                    <a href="/blog" clas="block px-8 py-2 dark:hover:bg-pink-800 hover-bg-pink-200">Blog</a>
                 </li>
                 <li>
                     <a href="/about" class="block px-4 py-2 dark:hover:bg-gray-700 hover:bg-gray-100">
