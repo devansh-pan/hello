@@ -30,11 +30,13 @@ export const load: PageServerLoad = async ({}) => {
       const content = await contentResponse.text();
 
       // Optional: Extract frontmatter metadata
-      const data = await compile(content);
-
+      const post = await compile(content);
+      const imageMatch = content.match(/!\[.*?\]\((.*?)\)/);
+  const thumbnail = imageMatch ? imageMatch[1] : null;
+  
       return {
         path: `/blog/${file.name.replace('.md', '').replace('.svx', '')}`,
-        data
+        post, thumbnail
       };
     })
   );

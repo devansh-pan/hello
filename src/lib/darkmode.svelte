@@ -22,8 +22,8 @@
   }
 </script>
 
-<button class="p-2 h-[30px] m-4 border border-gray-400 dark:border-gray-100/30" onclick={toggleDarkMode} >
-  {isDarkMode ? 'Light' : 'Dark'}
+<button class="text-black center m-2 p-1  h-[30px] rounded border border-gray-400 dark:border-gray-100/30" onclick={toggleDarkMode} >
+  {isDarkMode ? '🔆' : '🌙'}
 </button>
 
 <style>

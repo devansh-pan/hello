@@ -1,4 +1,4 @@
-<script lan="ts">
+<script lang="ts">
   let data = $props()
   let {session} = $derived(data)
   import {page} from "$app/state"
@@ -6,8 +6,8 @@
   import Darkmode from "$lib/darkmode.svelte"
   
 </script>
-<header class="flex border-b flex-row ">
-  <img class="w-[70px]" src="/image.svg" alt="logo" />
+<header class="flex w-full border-b dark:border-gray-600 flex-row ">
+  <img class="w-[50px]" src="/image.svg" alt="logo" />
   {#if page.url.pathname === '/'}
   <h1 class="text-3xl font-bolder text-pink-900/80 dark:text-pink-400">Telugu18</h1>
   {:else}

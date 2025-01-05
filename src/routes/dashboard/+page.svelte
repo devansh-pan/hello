@@ -90,7 +90,7 @@ console.log(url.publicUrl)
 <form method="POST" onsubmit={handleSubmit}>
   <label for="fullname">
     Update name
-    <input required class="block"id="fullname" name="fullname" type="text" bind:value={profile.full_name} />
+    <input required class="block"id="fullname" name="fullname" type="text" value={profile.full_name} />
   </label>
     <button class="bg-gray-500 rounded p-2 m-2 text-white" type="submit">Submit</button>
 </form>
