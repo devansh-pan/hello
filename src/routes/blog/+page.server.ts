@@ -1,5 +1,7 @@
 import type {PageServerLoad} from './$types'
-import {compile} from "mdsvex"
+import {marked} from "marked"
+import matter from "gray-matter"
+
 import {PUBLIC_GIT_TOKEN} from "$env/static/public"
 export const load: PageServerLoad = async ({}) => {
   const repoUrl =
@@ -20,6 +22,7 @@ export const load: PageServerLoad = async ({}) => {
   }
 
   const files = await response.json();
+  let file : string = ''
   // Filter only markdown files and fetch their content
   const markdownFiles = files.filter(file => file.name.endsWith('.md') || file.name.endsWith('.svx'));
 
@@ -30,13 +33,15 @@ export const load: PageServerLoad = async ({}) => {
       const content = await contentResponse.text();
 
       // Optional: Extract frontmatter metadata
-      const post = await compile(content);
+      const parsed = await matter(content);
+      const html = marked(parsed.content)
+      const data = parsed.data;
       const imageMatch = content.match(/!\[.*?\]\((.*?)\)/);
   const thumbnail = imageMatch ? imageMatch[1] : null;
   
       return {
         path: `/blog/${file.name.replace('.md', '').replace('.svx', '')}`,
-        post, thumbnail
+       data, html, thumbnail
       };
     })
   );

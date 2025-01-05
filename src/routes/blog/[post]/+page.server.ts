@@ -1,4 +1,5 @@
-import {compile} from "mdsvex"
+import {marked} from "marked"
+  import matter from "gray-matter"
 import {json} from "@sveltejs/kit"
 import {PUBLIC_GIT_TOKEN} from "$env/static/public"
 
@@ -10,12 +11,10 @@ export const load: PageServerLoad = async ({fetch , params}) => {
       'Cache-Control': 's-maxage=3600, stale-while-revalidate=59'
   }});
 	const item = await res.text();
-  const result = await compile(item, {
-    filename: 'example.md',
-    extension: '.md',
-  });
- console.log(result?.code)
+  const parsed = matter(item);
+  const html = marked(parsed.content)
+ console.log()
   return {
-    compiledCode: result,
+    html, data:parsed.data
   };
 }

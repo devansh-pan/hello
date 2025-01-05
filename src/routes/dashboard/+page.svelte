@@ -5,8 +5,7 @@
   import type { PageData } from './$types'
  let message = $state("");
   let { data, form } = $props()
-  let { profile, supabase, user } = $derived(data)
-    console.log(form)
+  let { profile, supabase, user } = $derived(data);
     const { data:url } = supabase.storage.from('avatars').getPublicUrl(profile.username)
 const avatar = url.publicUrl
   const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = async (evt) => {
@@ -29,7 +28,6 @@ const avatar = url.publicUrl
     } 
     
   }
-console.log(url.publicUrl)
 </script>
 {#if user}
 <h1>Welcome {profile.full_name}</h1>

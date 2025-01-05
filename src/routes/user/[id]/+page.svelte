@@ -1,7 +1,6 @@
 <script lang=ts >
 	let { data } = $props();
 	let {profile} = $derived(data);
-	console.log(data);
 </script>
 <h1 class="m-2">User : {profile.username ?? "not found"} </h1>
 <div class="rounded p-2 m-2 border dark:border-gray-500 shadow ">
