@@ -9,7 +9,8 @@ export const load: PageServerLoad = async ({}) => {
   const response = await fetch(repoUrl, {
      headers: {
       Authorization: `token ${PUBLIC_GIT_TOKEN}`,
-      "Accept": "application/vnd.github.v3+json"
+      "Accept": "application/vnd.github.v3+json",
+       'Cache-Control': 's-maxage=3600, stale-while-revalidate=59'
     }
   });
 

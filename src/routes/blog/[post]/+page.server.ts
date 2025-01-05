@@ -7,11 +7,12 @@ export const load: PageServerLoad = async ({fetch , params}) => {
   const res = await fetch(`https://raw.githubusercontent.com/devansh-pan/posts/refs/heads/main/${params.post}.md`,{ 
     headers: {
       Authorization: `token ${PUBLIC_GIT_TOKEN}`,
+      'Cache-Control': 's-maxage=3600, stale-while-revalidate=59'
   }});
 	const item = await res.text();
   const result = await compile(item, {
-    filename: 'example.svx',
-    extension: '.svx',
+    filename: 'example.md',
+    extension: '.md',
   });
  console.log(result?.code)
   return {
