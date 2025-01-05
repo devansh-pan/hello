@@ -9,8 +9,8 @@
 import Header from "$lib/Header.svelte"
 
   let { data, children } = $props()
-  let { session, supabase } = $derived(data)
-
+  let { session, supabase} = $derived(data)
+console.log(data?.data)
   onMount(() => {
     const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
       if (newSession?.expires_at !== session?.expires_at) {
@@ -21,6 +21,8 @@ import Header from "$lib/Header.svelte"
     return () => data.subscription.unsubscribe()
   });
 </script>
+<section id="theme" class="{data?.data?.theme}">
 <Header {session} />
 {@render children()}
 <Footer />
+</section>
