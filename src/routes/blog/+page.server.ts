@@ -3,7 +3,7 @@ import {marked} from "marked"
 import matter from "gray-matter"
 
 import {PUBLIC_GIT_TOKEN} from "$env/static/public"
-export const load: PageServerLoad = async ({}) => {
+export const load: PageServerLoad = async ({fetch}) => {
   const repoUrl =
     'https://api.github.com/repos/devansh-pan/posts/contents/';
 
@@ -21,14 +21,14 @@ export const load: PageServerLoad = async ({}) => {
     throw new Error('Failed to fetch content from GitHub' + response.statusText);
   }
 
-  const files = await response.json();
-  let file : string = ''
+  const files : Record<string,any> = await response.json();
+  
   // Filter only markdown files and fetch their content
-  const markdownFiles = files.filter(file => file.name.endsWith('.md') || file.name.endsWith('.svx'));
+  const markdownFiles = files.filter((file:{name : string})  => file.name.endsWith('.md') || file.name.endsWith('.svx'));
 
   // Fetch content for each markdown file
   const posts = await Promise.all(
-    markdownFiles.map(async file => {
+    markdownFiles.map(async (file:{download_url: string,name:string}) => {
       const contentResponse = await fetch(file.download_url);
       const content = await contentResponse.text();
 
@@ -50,7 +50,7 @@ export const load: PageServerLoad = async ({}) => {
 }
 
 // Helper function to extract frontmatter metadata
-function extractMetadata(content) {
+function extractMetadata(content : string) {
   const match = content.match(/---\n([\s\S]+?)\n---/);
   if (!match) return {};
   const yaml = match[1];

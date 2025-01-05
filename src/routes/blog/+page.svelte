@@ -6,7 +6,7 @@
 {#each posts as post}
   <div class="border border-gray-200 rounded p-3 m-2">
 {#if post?.thumbnail}
-<img src={post?.thumbnail} lazy-loading="true" alt="{post?.data?.title}" class="w-full rounded-md" />
+<img src={post?.thumbnail} alt="{post?.data?.title}" class="w-full rounded-md" />
 {/if}
 <a href="{post?.path}"><h2 class="text-2xl">{post?.data?.title}</h2></a>
   <p>{post?.data?.description}</p>
