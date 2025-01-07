@@ -1,5 +1,11 @@
 <script>
+    import {onMount} from "svelte"
+    
     let year = new Date().getFullYear();
+    onMount(() => {
+    const dtf = new Intl.DateTimeFormat( navigator.language ?? 'te', {dateStyle: 'long', timeStyle: 'short'});
+const date = dtf.format(new Date());
+    let el = document.getElementById("date").innerText = "Date now:" + date;})
 </script>
 
 <footer class="bottom-[1px] bg-white rounded-sm shadow m-2 dark:bg-gray-800 dark:border dark:border-gray-100/40">
@@ -21,4 +27,5 @@
         </li>
     </ul>
     </div>
+    <small id="date"> </small>
 </footer>

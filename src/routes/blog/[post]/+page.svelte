@@ -10,6 +10,23 @@
 <hr class="border border-gray-600"/>
 <main class="prose dark:prose-invert p-2 ">
    {@html html ?? 'No content'}
+   <script src="https://giscus.app/client.js"
+        data-repo="devansh-pan/comments"
+        data-repo-id="R_kgDONMp2OQ"
+        data-category="General"
+        data-category-id="DIC_kwDONMp2Oc4CkHQu"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+   </script>
 </main>
+
 <style>
 </style>
