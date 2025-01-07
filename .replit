@@ -1,5 +1,5 @@
 run = "pnpm dev --open"
-modules = ["nodejs-20", "web"]
+modules = ["nodejs-20", "web", "nodejs-22"]
 
 [nix]
 channel = "stable-24_05"
@@ -25,3 +25,23 @@ id = "module:nodejs-20/formatter:prettier"
 
 [deployment]
 run = ["sh", "-c", "pnpm dev --open"]
+
+[workflows]
+
+[[workflows.workflow]]
+name = "Build"
+mode = "sequential"
+author = 38587534
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pnpm build"
+
+[[workflows.workflow]]
+name = "update dependes"
+mode = "sequential"
+author = 38587534
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pnpm update"

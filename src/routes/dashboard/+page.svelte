@@ -88,7 +88,8 @@ const avatar = url.publicUrl
 <form method="POST" onsubmit={handleSubmit}>
   <label for="fullname">
     Update name
-    <input required class="block"id="fullname" name="fullname" type="text" value={profile.full_name} />
+    <input class="block invalid:text-red-500 red-500 peer" required id="fullname" minlength="5" maxlength="35" name="fullname" type="text" value={profile.full_name} />
+      <small class="invisible peer-invalid:visible text-red-400">Not valid</small>
   </label>
     <button class="bg-gray-500 rounded p-2 m-2 text-white" type="submit">Submit</button>
 </form>
@@ -96,3 +97,8 @@ const avatar = url.publicUrl
     {/if}
   <p>{message}</p>
 {/if}
+<style>
+input{
+    field-setting: content;
+}
+</style>
