@@ -41,18 +41,17 @@ function toggleClassById(id, className) {
 </script>
 
 <button class="text-black center m-2 p-1  h-[30px] rounded border border-gray-400 dark:border-gray-100/30" onclick={ () => toggleClassById('theme','dark')} >
-  {isDarkMode ? '🔆' : '🌙'}
+  {isDarkMode ? '🌙' : '🔆'}
 </button>
 
 <style>
   /* Example styles for dark mode */
   :global(section.dark) {
-    @apply bg-gray-800 text-white;
+    @apply bg-blue-950 text-white;
     
   }
 
   :global(html) {
-    background-color: white;
-    @apply text-gray-800;
+    @apply bg-blue-50/50 text-blue-950/80;
   }
 </style>

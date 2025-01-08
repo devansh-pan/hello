@@ -6,12 +6,12 @@
   import Darkmode from "$lib/darkmode.svelte"
   
 </script>
-<header class="flex w-full border-b dark:border-gray-600 flex-row ">
+<header class="flex bg-[#a47864] text-white p-4 w-full border-b dark:border-gray-600 flex-row ">
   <img class="w-[50px]" src="/image.svg" alt="logo" />
   {#if page.url.pathname === '/'}
-  <h1 class="text-3xl font-bolder text-pink-900/80 dark:text-pink-400">Telugu18</h1>
+  <h1 class="text-3xl font-bolder text-pink-400/80 dark:text-pink-400">Telugu18</h1>
   {:else}
-    <p class="text-3xl font-bold text-pink-900/80 dark:text-pink-400">Telugu18</p>
+    <p class="text-3xl font-bold text-pink-400/80 dark:text-pink-400">Telugu18</p>
   {/if}
 <Menu {session} />
 <Darkmode />
