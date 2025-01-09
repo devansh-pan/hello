@@ -4,9 +4,9 @@
 <!--<button popovertarget="menu">menu</button>
 <div class="top-0" popover id="menu">Heloo</div> -->
 <div class="p-2">
-    <div class="group *:dark:bg-blue-950 *:bg-blue-950 *:hover:dark:bg-blue-900 *:text-gray-50 relative">
+    <div class="group *:dark:bg-blue-950  *:hover:dark:bg-blue-900 *:text-gray-950 relative">
         <button class="bg-gray-100 border dark:border-gray-100/30 dark:bg-gray-800 dark:text-gray-200 text-gray-800 px-2 h-8 rounded">Menu</button>
-        <nav tabindex="0" class="border border-2 bg-white invisible border-gray-400 rounded w-60 absolute left-0 top-full transition-all rounded  opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1">
+        <nav tabindex="0" class="border border-2 bg-white *:dark:text-gray-50 invisible border-gray-400 rounded w-60 absolute left-0 top-full transition-all rounded  opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1">
             <ul class="py-1 ">
                 <li>
                     <a href="/dashboard" class="block px-2 py-1 text-sm "> Dashboard

@@ -6,10 +6,11 @@
 {#each posts as post}
   <div class="border border-gray-200 rounded p-3 m-2">
 {#if post?.thumbnail}
-<img src={post?.thumbnail} alt="{post?.data?.title}" class="w-full rounded-md" />
+<img src={post.thumbnail}  alt="{post?.data?.title}" class="w-full aspect-16/9 rounded-md" />
 {/if}
-<a href="{post?.path}"><h2 class="text-2xl">{post?.data?.title}</h2></a>
-  <p>{post?.data?.description}</p>
+<a href="{post?.path}"><h2 class="mb-4 text-2xl">{post?.data?.title}</h2>
+  <small class="text-sm"> Updated on : {post.data?.date ?? ""} &nbsp; Author : {post.data?.author ?? "guest"} </small>
+  <p>{post?.data?.description}</p></a>
 </div>
 {/each}
 </div>
