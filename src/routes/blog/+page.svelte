@@ -4,7 +4,7 @@
 </script>
 <div class="flex flex-col md:flex-row-3 lg:flex-row-4">
 {#each posts as post}
-  <div class="border border-gray-200 rounded p-3 m-2">
+  <div class="border border-gray-400 bg-white dark:bg-inherit rounded p-3 m-2">
 {#if post?.thumbnail}
 <img src={post.thumbnail} loading="lazy" alt="{post?.data?.title}" class="w-full aspect-16/9 hover:shadow rounded-md" />
 {/if}

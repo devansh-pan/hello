@@ -25,7 +25,7 @@
 import hljs from 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/es/highlight.min.js';
    hljs.highlightAll();
 </script>
-   
+   <br/>
    {@html html ?? 'No content'}
    <script src="https://giscus.app/client.js"
         data-repo="devansh-pan/comments"

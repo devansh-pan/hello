@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
-  let isDarkMode = $state(false);
+  let isDarkMode = $state(() => false);
 
   // Load theme from localStorage
   onMount(() => {
@@ -40,8 +40,8 @@ function toggleClassById(id, className) {
       
 </script>
 
-<button class="text-black bg-white dark:bg-blue-950/50 center m-2 p-1 ml-40 h-[30px] rounded border border-gray-400 dark:border-gray-100/30" onclick={ () => toggleClassById('theme','dark')} >
-  {isDarkMode ? '🌙' : '🔆'}
+<button class="text-black center m-2 ml-40 w-[30px] h-[30px] rounded-full bg-white" onclick={ () => toggleClassById('theme','dark')} >
+  <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/first-quarter.png" alt="first-quarter"/>
 </button>
 
 <style>
