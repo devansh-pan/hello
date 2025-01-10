@@ -40,7 +40,7 @@ function toggleClassById(id, className) {
       
 </script>
 
-<button class="text-black bg-white dark:bg-blue-950/50 center m-2 p-1  h-[30px] rounded border border-gray-400 dark:border-gray-100/30" onclick={ () => toggleClassById('theme','dark')} >
+<button class="text-black bg-white dark:bg-blue-950/50 center m-2 p-1 ml-40 h-[30px] rounded border border-gray-400 dark:border-gray-100/30" onclick={ () => toggleClassById('theme','dark')} >
   {isDarkMode ? '🌙' : '🔆'}
 </button>
 
