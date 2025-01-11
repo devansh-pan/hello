@@ -12,6 +12,16 @@ console.log(posts);
     'bg-blue-200',
     'bg-indigo-200',
     'bg-purple-200',
+    'bg-pink-200',
+    'bg-slate-200',
+    'bg-amber-200',
+    'bg-emerald-200',
+    'bg-sky-200',
+    'bg-rose-200',
+    'bg-lime-200',
+    'bg-teal-200',
+    'bg-violet-200',
+    
   ]);
 </script>
 <div class="flex flex-col md:flex-row-3 lg:flex-row-4">
