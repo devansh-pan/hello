@@ -4,10 +4,22 @@
   let data = $props();
   const {data:{posts}} = $derived(data);
 console.log(posts);
+  const colors = $state([
+    'bg-red-200',
+    'bg-orange-200',
+    'bg-yellow-200',
+    'bg-green-200',
+    'bg-blue-200',
+    'bg-indigo-200',
+    'bg-purple-200',
+  ]);
 </script>
 <div class="flex flex-col md:flex-row-3 lg:flex-row-4">
-{#each posts as post}
-  <div class="border border-gray-400 bg-white dark:bg-inherit rounded p-3 m-2">
+{#each posts as post, i}
+  <h1 class="p-4 text-inherit">
+      Blog Archive
+  </h1>
+  <div class="border border-gray-400 dark:bg-inherit {colors[i % colors.length]} rounded p-3 m-2">
 {#if post?.thumbnail}
 <img src={post.thumbnail} loading="lazy" alt="{post?.data?.title}" class="w-full aspect-16/9 hover:shadow rounded-md" />
 {/if}
