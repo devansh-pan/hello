@@ -30,26 +30,26 @@ const avatar = url.publicUrl
   }
 </script>
 {#if user}
-<h1>Welcome {profile.full_name}</h1>
+<h1 class="m-3 text-2xl text-bold">Welcome {profile.full_name}</h1>
   {#if profile}
-  <div class="bg-white overflow-hidden shadow rounded-lg border m-3 dark:bg-blue-900/90 *:dark:text-white">
+  <div class="bg-white overflow-hidden shadow rounded-lg border dark:border-gray-600 m-3 dark:bg-inherit *:dark:text-white">
     <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium dark:text-gray-100 text-gray-900">
             Profile :
         </h3>
-        <p class="mt-1 max-w-2xl text-sm text-gray-100">
-            This is some information about the you.
+        <p class="mt-1 max-w-2xl text-sm text-inherit">
+        
         </p>
     </div>
-    <div class="border-t *:dark:text-white border-gray-200 px-4 py-5 sm:p-0">
+    <div class="border-t *:dark:text-white border-gray-200 dark:border-inherit px-4 py-5 sm:p-0">
         <dl class="sm:divide-y m:divide-gray-200">
             <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 *:dark:text-white  sm:gap-4 sm:px-6">
               <img src={avatar} alt="avatar" class="aspect-square w-[60px] rounded-full circle" />
-                <dt class="text-sm font-medium ">
+                <dt class="text-sm mt-3  font-medium ">
                     Full name :
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {profile.full_name}
+                    {profile?.full_name ?? "guest"}
                 </dd>
             </div>
             <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 *:dark:text-white sm:gap-4 sm:px-6">
@@ -57,7 +57,7 @@ const avatar = url.publicUrl
                     Email address:
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {user.email}
+                    {user?.email ?? "no email"}
                 </dd>
             </div>
             <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 *:dark:text-white sm:gap-4 sm:px-6">
@@ -65,7 +65,7 @@ const avatar = url.publicUrl
                     Phone number:
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    (123) 456-7890
+                    {profile?.phone ?? "no phone"}
                 </dd>
             </div>
             <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 *:dark:text-white sm:gap-4 sm:px-6">
@@ -73,7 +73,7 @@ const avatar = url.publicUrl
                     Address:
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    123 Main St<br>
+                    Mt. Meru<br>
                      Shambala,India
                 </dd>
             </div>
@@ -82,13 +82,13 @@ const avatar = url.publicUrl
 </div>
   {/if}
   
-  <a class="text-gray-700 dark:text-white p-2 font-bold border block" href="/user/{profile.username}">View public profile</a>
+  <a class="text-gray-700 dark:text-white p-2 font-bold border border-inherit block" href="/user/{profile.username}">View public profile</a>
     {#if profile.full_name}
-    <div class="bg-white p-2 rounded dark:text-gray-800 dark:bg-teal-700 shadow ">
+    <div class=" p-2 rounded dark:text-gray-800 dark: shadow ">
 <form method="POST" onsubmit={handleSubmit}>
   <label for="fullname dark:text-white">
     Update name
-    <input class="block dark:bg-blue-200/40 dark:text-white invalid:text-red-500 red-500 peer" required id="fullname" minlength="5" maxlength="35" name="fullname" type="text" value={profile.full_name} />
+    <input class="block dark:bg-blue-100 dark: invalid:text-red-500 rounded red-500 peer" required id="fullname" minlength="5" maxlength="35" name="fullname" type="text" value={profile.full_name} />
       <small class="invisible peer-invalid:visible text-red-400">Not valid</small>
   </label>
     <button class="p-2 rounded bg-blue-950/60 dark:bg-blue-300 dark:text-gray-900 text-white" type="submit">Submit </button>
