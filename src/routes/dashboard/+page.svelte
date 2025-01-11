@@ -83,15 +83,16 @@ const avatar = url.publicUrl
   {/if}
   
   <a class="text-gray-700 dark:text-white p-2 font-bold border border-inherit block" href="/user/{profile.username}">View public profile</a>
+    <button popovertarget="update" class="p-2 m-4 border border-inherit " >Update profile</button>
     {#if profile.full_name}
-    <div class=" p-2 rounded dark:text-gray-800 dark: shadow ">
+    <div popover id="update" class=" m-5 p-2 rounded dark:text-gray-800 w-full h-[75%]  shadow ">
 <form method="POST" onsubmit={handleSubmit}>
   <label for="fullname dark:text-white">
     Update name
-    <input class="block dark:bg-blue-100 dark: invalid:text-red-500 rounded red-500 peer" required id="fullname" minlength="5" maxlength="35" name="fullname" type="text" value={profile.full_name} />
+    <input class="block w-[75%] dark:bg-blue-100 dark: invalid:text-red-500 rounded red-500 peer" required id="fullname" minlength="5" maxlength="35" name="fullname" type="text" value={profile.full_name} />
       <small class="invisible peer-invalid:visible text-red-400">Not valid</small>
   </label>
-    <button class="p-2 rounded bg-blue-950/60 dark:bg-blue-300 dark:text-gray-900 text-white" type="submit">Submit </button>
+    <button class="p-2 rounded bg-blue-950/60 dark:bg-blue-300 dark:text-gray-900 text-white" type="submit">Update </button>
 </form>
     </div>
     {/if}
