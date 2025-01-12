@@ -11,6 +11,9 @@
   if (parts.length === 2) return parts.pop().split(';').shift();
     };
     const savedTheme = getCookie('theme');
+    if (savedTheme === "dark") {
+      document.getElementById('theme').classList.add('dark');
+    }
     isDarkMode = savedTheme === 'dark';});
     // Apply the theme
 function toggleClassById(id, className) {
@@ -40,15 +43,15 @@ function toggleClassById(id, className) {
       
 </script>
 
-<button class="text-black center m-2 ml-40 w-[30px] h-[30px] rounded-full bg-white" onclick={ () => toggleClassById('theme','dark')} >
+<button class="text-slate-800 center m-2 ml-40 w-[30px] h-[30px] rounded-full bg-white" onclick={ () => toggleClassById('theme','dark')} >
   <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/first-quarter.png" alt="first-quarter"/>
 </button>
 
 <style>
   /* Example styles for dark mode */
   :global(section.dark) {
-    @apply  text-white;
-    background-color:oklch(.2 .23 200);
+    @apply  text-slate-200;
+    @apply bg-slate-900;
   }
 
   :global(html) {

@@ -82,7 +82,7 @@ const avatar = url.publicUrl
 </div>
   {/if}
   
-  <a class="text-gray-700 dark:text-white p-2 font-bold border border-inherit block" href="/user/{profile.username}">View public profile</a>
+  <a class="text-slate-700 dark:text-white p-2 font-bold  " href="/user/{profile.username}">View public profile</a> <br>
     <button popovertarget="update" class="p-2 m-4 border border-inherit " >Update profile</button>
     {#if profile.full_name}
     <div popover id="update" class=" m-5 p-2 rounded dark:text-gray-800 w-full h-[75%]  shadow ">

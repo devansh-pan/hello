@@ -8,6 +8,6 @@ const {data: meta} = $derived(data)
   <meta name="description" content="Welcome to Telugu1 " >
   </svelte:head>
 <h2 class="h1 text-xl m-1 mt-3">Welcome {user?.user_metadata?.full_name ?? "Guest"}</h2>
-<section class="flex dark:bg-blue-950 dark:text-white flex-row border-b shadow p-1 m-1 rounded">
+<section class="flex dark:bg-slate-900 dark:text-slate-200 flex-row border-b shadow p-1 m-1 rounded">
 </section>
 

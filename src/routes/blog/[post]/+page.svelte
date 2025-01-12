@@ -26,6 +26,11 @@ import hljs from 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/bu
    hljs.highlightAll();
 </script>
    <br/>
+   <h1>{data?.data?.title ?? "no title"}</h1>
+   <small>Author : {data.data.author ?? "Guest"} &nbsp; Updated : {data.data.date} &nbsp; {#if data.data.reading}
+      {data?.data?.reading + " read" ?? " "}
+   {/if}</small>
+   <br>
    {@html html ?? 'No content'}
    <script src="https://giscus.app/client.js"
         data-repo="devansh-pan/comments"

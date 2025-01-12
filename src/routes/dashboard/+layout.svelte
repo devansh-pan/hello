@@ -15,9 +15,9 @@
   
 <main>
   {@render children()}
-  <button class="outline bg-white  rounded p-2 m-2 text-gray-700" popovertarget="logout">Logout</button>
-  <div class="rounded border bg-yellow-100 border-yellow-500 *:rounded p-4 w-[78%]" popover id="logout">
+  <button class="outline bg-white dark:bg-inherit dark:text-inherit outline-slate-400 rounded p-2 m-2 text-slate-700" popovertarget="logout">Logout</button>
+  <div class="rounded-lg border border-yellow-500 *:rounded bg-slate-300 text-slate-900  p-4 w-[70%]" popover id="logout">
     <p>Please confirm your action </p>
-    <button class="p-2 m-2 border  border-[3px] hover:bg-red-500 border-red-400" onclick={logout}>Confirm logout</button>
+    <button class="p-2 m-2 border  border-[3px] hover:bg-red-500 bg-inherit text-inherit border-red-400" onclick={logout}>Confirm logout</button>
   </div>
 </main>
