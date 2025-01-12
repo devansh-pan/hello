@@ -1,5 +1,5 @@
 <script lang="ts">
- /* import Fuse from "fuse.js" */
+  import Fuse from "fuse.js" 
   
   let data = $props();
   const {data:{posts}} = $derived(data);
@@ -23,9 +23,28 @@ console.log(posts);
     'bg-violet-200',
     
   ]);
+ let result = $state([])
+function update(event) {
+  const fuse = new Fuse(posts, {
+    keys:['data.title','data.description','path']
+  })
+ result = fuse.search(event.target.value)
+  console.log(result);
+  return result
+}
 </script>
 <div class="flex flex-col md:flex-row-3 lg:flex-row-4">
-{#each posts as post, i}
+  
+  <input type="text" name="hello" onchange={update}>
+  {#if result !== null}
+    {#each result as post}
+     <div class="border p-2 mb-4"> <a href="{post?.item?.path}">{post?.item?.data?.title ?? "no title"}
+     </a> <br/>
+     {post.item.data?.description ?? "no description"}</div>
+    {/each}
+  {/if}
+  
+{#each posts as post, i }
   <h1 class="p-4 text-inherit">
       Blog Archive
   </h1>

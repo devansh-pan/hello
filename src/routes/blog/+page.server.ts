@@ -41,7 +41,7 @@ export const load: PageServerLoad = async ({fetch}) => {
   
       return {
         path: `/blog/${file.name.replace('.md', '').replace('.svx', '')}`,
-       data, html, thumbnail
+       data, thumbnail
       };
     })
   );

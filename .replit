@@ -45,3 +45,12 @@ author = 38587534
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "pnpm update"
+
+[[workflows.workflow]]
+name = "preview"
+mode = "sequential"
+author = 38587534
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pnpm preview"
