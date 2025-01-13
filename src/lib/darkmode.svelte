@@ -47,7 +47,7 @@ function toggleClassById(id, className) {
   <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/first-quarter.png" alt="first-quarter"/>
 </button>
 
-<style>
+<style lang="postcss">
   /* Example styles for dark mode */
   :global(section.dark) {
     @apply  text-slate-200;

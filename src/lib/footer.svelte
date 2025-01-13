@@ -30,7 +30,5 @@ const date = dtf.format(new Date());
     <small class="m-4" id="date"> </small>
 </footer>
 <style>
-   .dark{
-        background-color:oklch(.2 .23 200);
-    }
+   
 </style>
