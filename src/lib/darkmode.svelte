@@ -51,7 +51,7 @@ function toggleClassById(id, className) {
   /* Example styles for dark mode */
   :global(section.dark) {
     @apply  text-slate-200;
-    @apply bg-slate-900;
+    @apply bg-slate-800;
   }
 
   :global(html) {
