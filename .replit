@@ -12,3 +12,9 @@ deploymentTarget = "gce"
 [[ports]]
 localPort = 5173
 externalPort = 80
+exposeLocalhost = true
+
+[[ports]]
+localPort = 5174
+externalPort = 8000
+exposeLocalhost = true
