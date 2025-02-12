@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { questions } from '$lib/qu';
+	import type { Snapshot } from './$types';
 	let _questions = [
 		{
 			question: 'What is the capital of France?',
@@ -23,6 +24,10 @@
 	let score = $state(0);
 	let quizCompleted = $state(false);
 	let selected: (number | null)[] = $state([]);
+	export const snapshot: Snapshot<string> = {
+		capture: () => selected,
+		restore: (value: []) => (selected = value)
+	};
 	function checkAnswer() {
 		selected.push(selectedOption);
 		if (selectedOption === questions[currentQuestionIndex].answer) {
