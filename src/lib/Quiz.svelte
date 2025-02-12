@@ -1,5 +1,6 @@
 <script lang="ts">
-	let questions = [
+	import { questions } from '$lib/qu';
+	let _questions = [
 		{
 			question: 'What is the capital of France?',
 			options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
@@ -21,7 +22,7 @@
 	let selectedOption: null | number = $state(null);
 	let score = $state(0);
 	let quizCompleted = $state(false);
-	let selected: (number|null)[] = $state([]);
+	let selected: (number | null)[] = $state([]);
 	function checkAnswer() {
 		selected.push(selectedOption);
 		if (selectedOption === questions[currentQuestionIndex].answer) {
@@ -80,21 +81,38 @@
 		</button>
 	{:else}
 		<div class="prose w-full rounded-md border border-gray-300 p-4 [p]:text-[18px]">
-			<h2 class="mb-2 text-3xl">Quiz Completed!</h2>
-			<p class="text-xl font-extrabold">Your score: {score} / {questions.length}</p>
+			<p class="text-xl">Your score: {score} / {questions.length}</p>
+			<h3 class="text-3xl font-bold">{((score / questions.length) * 100).toFixed(2)}</h3>
 			{#if score >= questions.length / 2}
-				<p>Good work</p>
+				<p>Good job</p>
 			{:else if score === 0}
-				<p>You lost</p>
+				<p>Nice try</p>
 			{/if}
-			<p class="mb-4 inline">
-			Selected:
-			{#each selected as s, i}
-				{i + 1}.<span class="rounded-full border p-1">{s + 1}</span> &nbsp; &nbsp;
-			{/each}
-			</p>
-			<button class="rounded-sm border p-2 text-3xl block center active:text-red-400" onclick={restartQuiz}
-				>Restart</button
+			<div class="mb-4 inline">
+				Result:
+				<br />
+				{#each selected as s, i}
+					<p class="left-align left text-xl">{i + 1 + ') ' + questions[i].question}.</p>
+					<br />
+					<span
+						data-correct={s === questions[i].answer}
+						class="m-2 mt-6 rounded-sm border bg-red-300 p-1 data-[correct=true]:bg-teal-400"
+					>
+						&nbsp;{'' + questions[i].options[s]}</span
+					>
+					{#if s !== questions[i].answer}
+						<br />
+						<span class="bg-teal-300"
+							>Correct answer: &nbsp;{questions[i].options[questions[i].answer]}
+						</span>
+					{/if}
+					&nbsp; &nbsp; <br />
+					<br />
+				{/each}
+			</div>
+			<button
+				class="center block rounded-sm border p-2 text-3xl active:text-red-400"
+				onclick={restartQuiz}>Restart</button
 			>
 		</div>
 	{/if}
