@@ -31,8 +31,11 @@
 			console.log(error.message);
 		} else {
 			message = 'Posted successfully';
-			if (!posts.some(post => post.id === id)) {
-				posts?.push({id,title,content:md})
+			const existingPostIndex = posts.findIndex(post => post.id === id);
+			if (existingPostIndex !== -1) {
+				posts[existingPostIndex] = {id, title, content: md};
+			} else {
+				posts.push({id, title, content: md});
 			}
 			title = ''; md = ''; id = crypto.randomUUID();
 			setTimeout(() => {
