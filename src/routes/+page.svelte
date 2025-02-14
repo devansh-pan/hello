@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Quiz from '$lib/Quiz.svelte';
+	import slugify from 'slugify'
 	import { invalidate } from '$app/navigation';
 	import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 	import { supabase } from '$lib/supabase';
@@ -11,7 +12,7 @@
 	let id = $state(crypto.randomUUID());
 	let posts: any[] = $state([]);
 	const postsFetch = async () => {
-		let { data, error } = await supabase.from('posts').select('*');
+		let { data, error } = await supabase.from('posts').select('*').neq('deleted',true).order('posted_at',{ascending:false});
 		if (!error) {
 			posts = data ?? [{}];
 			console.log(posts);
@@ -25,7 +26,7 @@
 		}
 		const { data, error } = await supabase
 			.from('posts')
-			.upsert([{ id: id, title: title, content: md }]);
+			.upsert([{ id: id, title: title, content: md , slug: slugify(title)}]);
 		if (error) {
 			message = error.message;
 			console.log(error.message);
@@ -49,7 +50,7 @@
 
 	async function deletePost(id: string): Promise<null> {
 		// event.preventDefault()
-		let { data, error } = await supabase.from('posts').delete().eq('id', id).select('*');
+		let { data, error } = await supabase.from('posts').update([{deleted:true}]).eq('id', id).select('*');
 		if (!error) {
 			message = 'Deleted successfully';
 		}
@@ -70,7 +71,7 @@
 		{#each posts as post, i}
 			<div class="flex flex-col">
 				<div class="border p-2">
-					<h2 class="m-2 text-2xl">{post.title}</h2>
+				<a href="/post/{post.slug}">	<h2 class="m-2 text-2xl">{post.title}</h2></a>
 					
 					<p class="**:appearence-none">{@html marked.parse(post.content)}</p>
 					<button class="m-2 w-25 border p-2" onclick={() => deletePost(post.id)}
