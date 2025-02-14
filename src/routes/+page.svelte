@@ -31,7 +31,9 @@
 			console.log(error.message);
 		} else {
 			message = 'Posted successfully';
-			posts?.push({id,title,content:md},)
+			if (!posts.some(post => post.id === id)) {
+				posts?.push({id,title,content:md})
+			}
 			title = ''; md = ''; id = crypto.randomUUID();
 			setTimeout(() => {
 				message = '';
