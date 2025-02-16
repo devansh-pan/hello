@@ -1,5 +1,9 @@
 <script lang="ts">
-	import Quiz from '$lib/Quiz.svelte';
+	//import Quiz from '$lib/Quiz.svelte';
+	let {data} = $props();
+	let {posts} = $derived(data);
+	let posts_ = $state(posts.data ?? [])
+	console.log(data.posts)
 	import slugify from 'slugify'
 	import { invalidate } from '$app/navigation';
 	import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
@@ -7,18 +11,18 @@
 	import { marked } from 'marked';
 	let md = $state('');
 	let title = $state('');
+	let slug = $state('');
 	let content = $derived(marked.parse(md));
 	let message = $state();
 	let id = $state(crypto.randomUUID());
-	let posts: any[] = $state([]);
+	// let posts: any[] = $state([]);
 	const postsFetch = async () => {
 		let { data, error } = await supabase.from('posts').select('*').neq('deleted',true).order('posted_at',{ascending:false});
 		if (!error) {
-			posts = data ?? [{}];
-			console.log(posts);
+			posts_ = data ?? [{}];
+		//	console.log(posts);
 		}
 	};
-	postsFetch();
 	async function post(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
 		event.preventDefault();
 		if (title === '' || md === '') {
@@ -32,14 +36,15 @@
 			console.log(error.message);
 		} else {
 			message = 'Posted successfully';
-			const existingPostIndex = posts.findIndex((post) => post.id === id);
+			const existingPostIndex = posts_.findIndex((post) => post.id === id);
 			if (existingPostIndex !== -1) {
-				posts[existingPostIndex] = { id, title, content: md };
+				posts_[existingPostIndex] = { id, title, content: md ,slug};
 			} else {
-				posts.push({ id, title, content: md });
+				posts_.push({ id, title, content: md });
 			}
 			title = '';
 			md = '';
+			slug = '';
 			id = crypto.randomUUID();
 			setTimeout(() => {
 				message = '';
@@ -56,7 +61,7 @@
 		}
 		console.log({ error, data });
 		invalidate(PUBLIC_SUPABASE_URL + '/rest/v1/posts');
-		posts = posts.filter((post) => post.id !== id);
+		posts_ = posts_.filter((post) => post.id !== id);
 		return null;
 	}
 </script>
@@ -68,7 +73,7 @@
 <h1 class="text-3xl font-bold">Welcome to Sveltz</h1>
 <br />
 {#if posts !== null}<div class="flex flex-col">
-		{#each posts as post, i}
+		{#each posts_ as post, i}
 			<div class="flex flex-col">
 				<div class="border p-2">
 				<a href="/post/{post.slug}">	<h2 class="m-2 text-2xl">{post.title}</h2></a>
@@ -79,7 +84,7 @@
 					>
 					<button
 						onclick={() => {
-							(title = post.title), (md = post.content), (id = post.id);
+							(title = post.title), (md = post.content), (id = post.id),(slug = post.slug);
 						}}
 						class="m-2 w-25 border p-2">Update</button
 					>

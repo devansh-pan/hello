@@ -10,6 +10,11 @@ run = ["node", "build"]
 deploymentTarget = "gce"
 
 [[ports]]
+localPort = 4983
+externalPort = 8008
+exposeLocalhost = true
+
+[[ports]]
 localPort = 5173
 externalPort = 80
 exposeLocalhost = true

@@ -5,10 +5,10 @@
 
 <section class="flex min-h-dvh flex-col">
 	<header class=" border-b border-gray-500 from-green-700 to-red-500 p-4">
-		<h1 class="m-2 text-3xl font-bold">Sveltz</h1>
+		<a href="/"><h1 class="m-2 text-3xl font-bold">Sveltz</h1></a>
 	</header>
 	<main class="grow p-2">
 		{@render children()}
 	</main>
-	<footer class=" p-6 text-gray-700">Sveltz &copy; 2025</footer>
+	<footer class=" p-6 border-t border-gray-400 text-gray-700">Sveltz &copy; 2025</footer>
 </section>
