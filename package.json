@@ -43,6 +43,7 @@
 		]
 	},
 	"dependencies": {
+		"@fontsource-variable/open-sans": "^5.1.1",
 		"@supabase/supabase-js": "2.48.1",
 		"@types/node": "22.13.4",
 		"marked": "^15.0.7",

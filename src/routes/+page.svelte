@@ -96,9 +96,7 @@
 <br />
 {message ?? ''}
 <br />
-<div class="prose prose-h1:text-3xl m-2 min-h-25 border p-2">
-	{@html marked.parse(md)}
-</div>
+
 <form method="POST" onsubmit={post} action="/?post">
 	<label for="title">
 		Post title :
@@ -114,6 +112,9 @@
 	</label>
 	<br />
 	<br />
+	<div class="prose prose-h1:text-3xl min-h-25 border p-2">
+	{@html marked.parse(md)}
+</div>
 	<label for="content">
 		Post content : MD supported
 		<textarea
