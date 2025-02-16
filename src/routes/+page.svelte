@@ -14,6 +14,7 @@
 	let slug = $state('');
 	let content = $derived(marked.parse(md));
 	let message = $state();
+	let value = $state()
 	let id = $state(crypto.randomUUID());
 	// let posts: any[] = $state([]);
 	const postsFetch = async () => {
@@ -33,9 +34,11 @@
 			.upsert([{ id: id, title: title, content: md , slug: slugify(title)}]);
 		if (error) {
 			message = error.message;
+			value = 'error'
 			console.log(error.message);
 		} else {
 			message = 'Posted successfully';
+			value = 'success'
 			const existingPostIndex = posts_.findIndex((post) => post.id === id);
 			if (existingPostIndex !== -1) {
 				posts_[existingPostIndex] = { id, title, content: md ,slug};
@@ -48,6 +51,7 @@
 			id = crypto.randomUUID();
 			setTimeout(() => {
 				message = '';
+				value = null;
 			}, 3000);
 		}
 		console.log({ data });
@@ -57,6 +61,7 @@
 		// event.preventDefault()
 		let { data, error } = await supabase.from('posts').update([{deleted:true}]).eq('id', id).select('*');
 		if (!error) {
+			value = 'success'
 			message = 'Deleted successfully';
 		}
 		console.log({ error, data });
@@ -70,7 +75,7 @@
 	<title>Sveltz</title>
 	<meta name="description" content="Sveltz" />
 </svelte:head>
-<h1 class="text-3xl font-bold">Welcome to Sveltz</h1>
+<h1 class="text-2xl font-bold">Welcome to Sveltz</h1>
 <br />
 {#if posts !== null}<div class="flex flex-col">
 		{#each posts_ as post, i}
@@ -94,7 +99,7 @@
 	</div>
 {/if}
 <br />
-{message ?? ''}
+<p data-status="{value}" class="data-[status=success]:bg-green-500 data-[status]:border-none  p-2 border text-gray-50">{message ?? ''}</p>
 <br />
 
 <form method="POST" onsubmit={post} action="/?post">
@@ -111,7 +116,8 @@
 		/>
 	</label>
 	<br />
-	<br />
+
+Preview:
 	<div class="prose prose-h1:text-3xl min-h-25 border p-2">
 	{@html marked.parse(md)}
 </div>
@@ -127,17 +133,18 @@
 		>
 		</textarea>
 	</label>
-
-	<button
+<button
 		disabled={md === '' || title === ''}
-		formaction="/"
-		class="m-4 rounded-lg border p-2 text-2xl disabled:text-gray-500"
-		type="submit">Post</button
-	>
-	<button
 		onclick={() => {
 			(id = crypto.randomUUID()), (md = ''), (title = '');
 		}}
-		class="m-2 border p-2">Discard</button
+		class="m-2  border disabled:text-gray-900/50 p-2">Discard</button
 	>
+	<button
+		disabled={md === '' || title === ''}
+		formaction="/"
+		class="m-4 ml-50 rounded  border p-2  text-xl disabled:text-gray-400"
+		type="submit">Post</button
+	>
+	
 </form>
