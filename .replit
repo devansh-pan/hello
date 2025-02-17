@@ -10,6 +10,11 @@ run = ["node", "build"]
 deploymentTarget = "gce"
 
 [[ports]]
+localPort = 4173
+externalPort = 8080
+exposeLocalhost = true
+
+[[ports]]
 localPort = 4983
 externalPort = 8008
 exposeLocalhost = true
@@ -23,3 +28,23 @@ exposeLocalhost = true
 localPort = 5174
 externalPort = 8000
 exposeLocalhost = true
+
+[workflows]
+
+[[workflows.workflow]]
+name = "build"
+mode = "sequential"
+author = 39341409
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pnpm build"
+
+[[workflows.workflow]]
+name = "previe"
+mode = "sequential"
+author = 39341409
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pnpm preview"
