@@ -72,10 +72,10 @@
 </script>
 
 <svelte:head>
-	<title>Sveltz</title>
+	<title>Svelty</title>
 	<meta name="description" content="Sveltz" />
 </svelte:head>
-<h1 class="text-2xl font-bold">Welcome to Sveltz</h1>
+
 <br />
 {#if posts !== null}<div class="flex flex-col">
 		{#each posts_ as post, i}
