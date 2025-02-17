@@ -11,7 +11,7 @@ export const GET = async (event:any) => {
   if (code) {
     const { data,error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      const {error} = await supabase.from('users').upsert({'id':data.user.id,'full_name':data.user.user_metadata.full_name,'email':data.user.email});
+      const {error} = await supabase.from('users').upsert({id:data.user.id,full_name:data.user.user_metadata.full_name,email:data.user.email}).select(); 
       throw redirect(303, `/${next.slice(1)}`);
     }
   }
