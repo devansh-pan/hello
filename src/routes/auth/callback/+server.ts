@@ -3,7 +3,6 @@ import {supabase} from "$lib/supabase";
 export const GET = async (event:any) => {
   const {
     url,
-    locals: { supabase }
   } = event;
   const code = url.searchParams.get('code') as string;
   const next = url.searchParams.get('next') ?? '/';
