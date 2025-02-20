@@ -1,8 +1,12 @@
 <script>
+  import {page} from '$app/state'
   import {supabase } from '$lib/supabase';
 async function signInWithGithub() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'github',
+    options:{
+    redirectTo:`${page.url.host}/auth/callback`
+    }
   })
 }
 </script>

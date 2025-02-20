@@ -1,7 +1,7 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,XOPQ,XTRA,YOPQ@8..144,25..151,100..1000,90,496,87&display=swap');
 @import 'tailwindcss';
-
+@plugin "@tailwindcss/typography";
 
 @theme {
  --font-flex: 'Roboto Flex','Noto Sans', sans-serif ;
